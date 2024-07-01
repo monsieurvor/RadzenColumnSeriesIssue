@@ -1,0 +1,47 @@
+﻿@page "/"
+<PageTitle>RadzenColumnIssue</PageTitle>
+
+<RadzenChart>
+    <RadzenColumnSeries Data="@DataItems" Title="Test" CategoryProperty="Quarter" ValueProperty="Earnings" Fill="red" />
+
+    <RadzenColumnOptions Radius="5" />
+
+    <RadzenCategoryAxis />
+
+    <RadzenValueAxis Visible=false >
+        <RadzenGridLines Visible=true />
+    </RadzenValueAxis>
+
+    <RadzenLegend Visible=false />
+</RadzenChart>
+
+@code {
+
+    class DataItem
+    {
+        public string Quarter { get; set; }
+        public double Earnings { get; set; }
+    }
+    DataItem[] DataItems = new DataItem[] {
+        new DataItem
+        {
+            Quarter = "Q1",
+            Earnings = 0
+        },
+        new DataItem
+        {
+            Quarter = "Q2",
+            Earnings = 1500
+        },
+        new DataItem
+        {
+            Quarter = "Q3",
+            Earnings = -30
+        },
+        new DataItem
+        {
+            Quarter = "Q4",
+            Earnings = 200
+        }
+    };
+}
