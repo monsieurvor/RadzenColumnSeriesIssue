@@ -1,14 +1,16 @@
 ﻿@page "/"
 <PageTitle>RadzenColumnIssue</PageTitle>
 
-<RadzenChart>
+<RadzenButton Click="ShowIssue" Text="Toggle Issue" ButtonStyle="ButtonStyle.Primary" />
+
+<RadzenChart @ref=issueChart>
     <RadzenColumnSeries Data="@DataItems" Title="Test" CategoryProperty="Quarter" ValueProperty="Earnings" Fill="red" />
 
-    <RadzenColumnOptions Radius="5" />
+    <RadzenColumnOptions Radius="@radius" />
 
     <RadzenCategoryAxis />
 
-    <RadzenValueAxis Visible=false >
+    <RadzenValueAxis>
         <RadzenGridLines Visible=true />
     </RadzenValueAxis>
 
@@ -16,6 +18,8 @@
 </RadzenChart>
 
 @code {
+    RadzenChart? issueChart;
+    int radius = 0;
 
     class DataItem
     {
@@ -31,7 +35,7 @@
         new DataItem
         {
             Quarter = "Q2",
-            Earnings = 1500
+            Earnings = 2000
         },
         new DataItem
         {
@@ -44,4 +48,9 @@
             Earnings = 200
         }
     };
+    void ShowIssue()
+    {
+        radius = radius == 0 ? radius = 10 : radius = 0;
+        issueChart?.Reload();
+    }
 }
